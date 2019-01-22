@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
+using Prometheus;
 
 namespace api
 {
@@ -48,6 +49,9 @@ namespace api
             var redirectRootToSwagger = new RewriteOptions()
                 .AddRedirect("^$", "swagger");
             app.UseRewriter(redirectRootToSwagger);
+
+            //SN - added for Prometheus
+            app.UseMetricServer();
         }
     }
 }
